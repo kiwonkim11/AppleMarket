@@ -3,6 +3,7 @@ package com.example.applemarket
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.applemarket.databinding.ActivityMainBinding
+import java.text.DecimalFormat
 
 class MainActivity : AppCompatActivity() {
 
@@ -12,5 +13,8 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val dec = DecimalFormat("#,###")
+
     }
 }
