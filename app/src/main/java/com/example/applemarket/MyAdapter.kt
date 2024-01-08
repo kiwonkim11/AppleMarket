@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.applemarket.databinding.ItemRecyclerviewBinding
+import java.text.DecimalFormat
 
 class MyAdapter (val mItems: MutableList<MyItem>) : RecyclerView.Adapter<MyAdapter.Holder>() {
 
@@ -23,10 +24,12 @@ class MyAdapter (val mItems: MutableList<MyItem>) : RecyclerView.Adapter<MyAdapt
         holder.itemView.setOnClickListener{
             itemClick?.onClick(it, position)
         }
+        val dec = DecimalFormat("#,###")
+
         holder.iconImageView.setImageResource(mItems[position].aIcon)
         holder.name.text = mItems[position].aName
         holder.address.text = mItems[position].aAddress
-        holder.price.text = mItems[position].aPrice.toString()
+        holder.price.text = "${dec.format(mItems[position].aPrice).toString()}원"
     }
 
     override fun getItemId(position: Int): Long {
