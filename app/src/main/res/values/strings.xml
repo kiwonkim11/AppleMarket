@@ -96,4 +96,5 @@
     <string name="item_name">Name</string>
     <string name="item_address">Address</string>
     <string name="item_price">Price</string>
+    <string name="main_myaddress">내배캠동</string>
 </resources>

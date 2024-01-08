@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.versionedparcelable.VersionedParcelize
 import com.example.applemarket.databinding.ActivityMainBinding
 import java.text.DecimalFormat
 
@@ -34,7 +35,7 @@ class MainActivity : AppCompatActivity() {
 
         adapter.itemClick = object : MyAdapter.ItemClick {
             override fun onClick(view: View, position: Int) {
-                val name: String = dataList[position].aName
+
             }
         }
 

@@ -1,5 +1,7 @@
 package com.example.applemarket
 
-import java.text.DecimalFormat
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
-data class MyItem (val aIcon:Int, val aName: String, val aAddress: String, val aPrice: Int, val aChat: Int, val aGood: Int) {}
+@Parcelize
+data class MyItem (val aIcon: Int, val aName: String, val aAddress: String, val aPrice: Int, val aChat: Int, val aGood: Int) : Parcelable
