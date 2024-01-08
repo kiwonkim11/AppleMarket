@@ -2,6 +2,7 @@ package com.example.applemarket
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.applemarket.databinding.ActivityMainBinding
 import java.text.DecimalFormat
@@ -31,9 +32,11 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
 
-
-
-        val dec = DecimalFormat("#,###")
+        adapter.itemClick = object : MyAdapter.ItemClick {
+            override fun onClick(view: View, position: Int) {
+                val name: String = dataList[position].aName
+            }
+        }
 
     }
 }
