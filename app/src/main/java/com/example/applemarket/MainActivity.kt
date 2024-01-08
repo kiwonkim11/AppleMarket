@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
 
         adapter.itemClick = object : MyAdapter.ItemClick {
             override fun onClick(view: View, position: Int) {
-
+                binding.
             }
         }
 
