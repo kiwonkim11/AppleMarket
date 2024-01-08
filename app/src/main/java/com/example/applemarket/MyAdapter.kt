@@ -3,6 +3,7 @@ package com.example.applemarket
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.applemarket.databinding.ItemRecyclerviewBinding
 
 class MyAdapter (val mItems: MutableList<MyItem>) : RecyclerView.Adapter<MyAdapter.Holder>() {
 
@@ -24,7 +25,7 @@ class MyAdapter (val mItems: MutableList<MyItem>) : RecyclerView.Adapter<MyAdapt
         holder.iconImageView.setImageResource(mItems[position].aIcon)
         holder.name.text = mItems[position].aName
         holder.address.text = mItems[position].aAddress
-        holder.price.text = mItems[position].aPrice
+        holder.price.text = mItems[position].aPrice.toString()
     }
 
     override fun getItemId(position: Int): Long {
@@ -35,10 +36,10 @@ class MyAdapter (val mItems: MutableList<MyItem>) : RecyclerView.Adapter<MyAdapt
         return mItems.size
     }
 
-    inner class Holder(val binding: ItemRecyclerViewBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class Holder(val binding: ItemRecyclerviewBinding) : RecyclerView.ViewHolder(binding.root) {
         val iconImageView = binding.iconItem
-        val name = binding.textItem1
-        val address = binding.textItem2
-        val price = binding.textItem3
+        val name = binding.textItemName
+        val address = binding.textItemAddress
+        val price = binding.textItemPrice
     }
 }
