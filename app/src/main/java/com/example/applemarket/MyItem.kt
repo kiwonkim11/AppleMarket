@@ -2,4 +2,4 @@ package com.example.applemarket
 
 import java.text.DecimalFormat
 
-data class MyItem (val aIcon:Int, val aName: String, val aAddress: String, val aPrice: Int) {}
+data class MyItem (val aIcon:Int, val aName: String, val aAddress: String, val aPrice: Int, val aChat: Int, val aGood: Int) {}

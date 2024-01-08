@@ -28,40 +28,54 @@
             android:id="@+id/textItem_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Name" />
+            android:text="@string/item_name"
+            android:textSize="16sp"/>
 
         <TextView
             android:id="@+id/textItem_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Address" />
+            android:hint="@string/item_address" />
 
         <TextView
             android:id="@+id/textItem_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Price"
-            android:textStyle="bold" />
+            android:text="@string/item_price"
+            android:textStyle="bold"
+            android:textSize="16sp"/>
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:paddingEnd="15dp"
         android:orientation="horizontal"
         >
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/chat"/>
 
         <TextView
             android:id="@+id/textItem_chat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="채팅" />
+            android:text="@string/item_chat" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/heart"/>
 
         <TextView
             android:id="@+id/textItem_good"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="좋아요" />
+            android:text="@string/item_good" />
 
     </LinearLayout>
 

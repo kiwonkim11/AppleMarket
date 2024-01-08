@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.applemarket.databinding.ItemRecyclerviewBinding
 import java.text.DecimalFormat
 
-class MyAdapter (val mItems: MutableList<MyItem>) : RecyclerView.Adapter<MyAdapter.Holder>() {
+class MyAdapter (private val mItems: MutableList<MyItem>) : RecyclerView.Adapter<MyAdapter.Holder>() {
 
     interface ItemClick {
         fun onClick(view: View, position: Int)
@@ -29,7 +29,9 @@ class MyAdapter (val mItems: MutableList<MyItem>) : RecyclerView.Adapter<MyAdapt
         holder.iconImageView.setImageResource(mItems[position].aIcon)
         holder.name.text = mItems[position].aName
         holder.address.text = mItems[position].aAddress
-        holder.price.text = "${dec.format(mItems[position].aPrice).toString()}원"
+        holder.price.text = "${dec.format(mItems[position].aPrice)}원"
+        holder.chat.text = "${mItems[position].aChat}"
+        holder.good.text = "${mItems[position].aGood}"
     }
 
     override fun getItemId(position: Int): Long {
@@ -40,10 +42,12 @@ class MyAdapter (val mItems: MutableList<MyItem>) : RecyclerView.Adapter<MyAdapt
         return mItems.size
     }
 
-    inner class Holder(val binding: ItemRecyclerviewBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class Holder(private val binding: ItemRecyclerviewBinding) : RecyclerView.ViewHolder(binding.root) {
         val iconImageView = binding.iconItem
         val name = binding.textItemName
         val address = binding.textItemAddress
         val price = binding.textItemPrice
+        val chat = binding.textItemChat
+        val good = binding.textItemGood
     }
 }
