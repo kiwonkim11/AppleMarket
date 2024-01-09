@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.DialogInterface
+import android.content.Intent
 import android.media.AudioAttributes
 import android.media.RingtoneManager
 import android.net.Uri
@@ -47,7 +48,12 @@ class MainActivity : AppCompatActivity() {
 
         adapter.itemClick = object : MyAdapter.ItemClick {
             override fun onClick(view: View, position: Int) {
+                val selectedItem = dataList[position]
 
+                val intent = Intent(this@MainActivity, DetailActivity::class.java).apply{
+                    putExtra("selectedItem", selectedItem)
+                }
+                startActivity(intent)
             }
         }
 

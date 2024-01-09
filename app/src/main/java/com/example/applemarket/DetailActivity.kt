@@ -1,8 +1,7 @@
 package com.example.applemarket
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
+import androidx.appcompat.app.AppCompatActivity
 import com.example.applemarket.databinding.ActivityDetailBinding
 
 class DetailActivity : AppCompatActivity() {
@@ -13,6 +12,12 @@ class DetailActivity : AppCompatActivity() {
 
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val selectedItem = intent.getParcelableExtra<MyItem>("selectedItem")
+
+        binding.ivBack.setOnClickListener {
+            finish()
+        }
 
     }
 }
