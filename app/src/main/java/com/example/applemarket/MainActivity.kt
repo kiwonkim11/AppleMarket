@@ -1,8 +1,19 @@
 package com.example.applemarket
 
+import android.annotation.SuppressLint
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.DialogInterface
+import android.media.AudioAttributes
+import android.media.RingtoneManager
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.view.View
+import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NotificationCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.applemarket.databinding.ActivityMainBinding
@@ -10,6 +21,7 @@ import com.example.applemarket.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -36,9 +48,59 @@ class MainActivity : AppCompatActivity() {
         adapter.itemClick = object : MyAdapter.ItemClick {
             override fun onClick(view: View, position: Int) {
 
-
             }
         }
 
+        binding.notificationBell.setOnClickListener {
+            notification()
+        }
+    }
+
+    fun notification() {
+        val manager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+
+        var builder: NotificationCompat.Builder
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channelID = "one-channel"
+            val channelName = "My Channel One"
+            val channel = NotificationChannel(channelID, channelName, NotificationManager.IMPORTANCE_DEFAULT).apply{
+                description = "My Channel One Description"
+                setShowBadge(true)
+                val uri: Uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+                val audioAttributes = AudioAttributes.Builder()
+                    .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                    .setUsage(AudioAttributes.USAGE_ALARM)
+                    .build()
+                setSound(uri, audioAttributes)
+                enableVibration(true)
+            }
+            manager.createNotificationChannel(channel)
+            builder = NotificationCompat.Builder(this, channelID)
+        } else {
+            builder = NotificationCompat.Builder(this)
+        }
+
+        builder.run {
+            setWhen(System.currentTimeMillis())
+            setContentTitle("키워드 알림")
+            setContentText("설정한 키워드에 대한 알림이 도착했습니다!!")
+        }
+
+        manager.notify(11, builder.build())
+    }
+
+    @SuppressLint("MissingSuperCall")
+    override fun onBackPressed() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("종료")
+        builder.setIcon(R.mipmap.chat)
+        builder.setMessage("정말 종료하시겠습니까?")
+
+        val listener = DialogInterface.OnClickListener { _, p0 ->
+            if (p0 == DialogInterface.BUTTON_POSITIVE) finish()
+        }
+        builder.setPositiveButton("확인", listener)
+        builder.setNegativeButton("취소", null)
+        builder.show()
     }
 }
