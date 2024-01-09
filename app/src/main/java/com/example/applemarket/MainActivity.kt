@@ -1,12 +1,11 @@
 package com.example.applemarket
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.versionedparcelable.VersionedParcelize
 import com.example.applemarket.databinding.ActivityMainBinding
-import java.text.DecimalFormat
 
 class MainActivity : AppCompatActivity() {
 
@@ -32,10 +31,12 @@ class MainActivity : AppCompatActivity() {
         val adapter = MyAdapter(dataList)
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
+        binding.recyclerView.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
 
         adapter.itemClick = object : MyAdapter.ItemClick {
             override fun onClick(view: View, position: Int) {
-                binding.
+
+
             }
         }
 
