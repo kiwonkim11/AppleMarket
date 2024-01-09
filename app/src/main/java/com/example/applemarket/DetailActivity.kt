@@ -13,7 +13,12 @@ class DetailActivity : AppCompatActivity() {
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val selectedItem = intent.getParcelableExtra<MyItem>("selectedItem")
+        val dataList = intent.getParcelableExtra<MyItem>("selectedItem")
+
+        binding.ivItem.setImageResource(dataList!!.aIcon)
+        binding.txtdetailName.text = dataList.aName
+        binding.txtdetailAddress.text = dataList.aAddress
+
 
         binding.ivBack.setOnClickListener {
             finish()
