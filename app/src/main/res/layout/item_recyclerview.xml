@@ -80,6 +80,7 @@
             android:id="@+id/textItem_chat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
             android:text="@string/item_chat"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/iv_chat"
@@ -90,6 +91,7 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:scaleType="centerCrop"
+            android:layout_marginStart="5dp"
             android:src="@drawable/heart"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/textItem_chat"
@@ -100,6 +102,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/item_good"
+            android:layout_marginStart="3dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/iv_good"
             app:layout_constraintTop_toTopOf="parent" />
