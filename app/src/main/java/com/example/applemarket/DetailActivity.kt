@@ -4,6 +4,7 @@ import android.graphics.Paint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.applemarket.databinding.ActivityDetailBinding
+import java.text.DecimalFormat
 
 class DetailActivity : AppCompatActivity() {
 
@@ -16,9 +17,12 @@ class DetailActivity : AppCompatActivity() {
 
         val dataList = intent.getParcelableExtra<MyItem>("selectedItem")
 
+        val dec = DecimalFormat("#,###")
+
         binding.ivItem.setImageResource(dataList!!.aIcon)
         binding.txtdetailName.text = dataList.aName
         binding.txtdetailNickname.text = dataList.aNickname
+        binding.txtdetailPrice.text = "${dec.format(dataList.aPrice)}원"
         binding.txtdetailAddress.text = dataList.aAddress
         binding.txtdetailPost.text = dataList.aPost
 
