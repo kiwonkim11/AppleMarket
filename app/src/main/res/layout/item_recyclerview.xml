@@ -1,87 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:paddingStart="10dp"
     android:paddingTop="10dp"
-    android:paddingBottom="10dp"
-    android:paddingStart="10dp">
+    android:paddingBottom="10dp">
 
     <ImageView
         android:id="@+id/iconItem"
         android:layout_width="120dp"
         android:layout_height="120dp"
-        android:scaleType="centerCrop"
         android:background="@drawable/rounded_background"
         android:clipToOutline="true"
+        android:scaleType="centerCrop"
 
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/sample1" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_weight="2"
         android:paddingStart="10dp"
-        android:orientation="vertical">
+        app:layout_constraintStart_toEndOf="@+id/iconItem"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/textItem_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="2"
             android:text="@string/item_name"
-            android:textSize="16sp"/>
+            android:textColor="@color/black"
+            android:textSize="16.5sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textItem_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="@string/item_address" />
+            android:hint="@string/item_address"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textItem_name" />
 
         <TextView
             android:id="@+id/textItem_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/item_price"
+            android:textSize="16sp"
             android:textStyle="bold"
-            android:textSize="16sp"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textItem_address" />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="10dp"
-        android:paddingEnd="10dp"
-        android:orientation="horizontal"
-        >
+        android:layout_marginEnd="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <ImageView
+            android:id="@+id/iv_chat"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:src="@drawable/chat"/>
+            android:src="@drawable/chat"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textItem_chat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingStart="5dp"
-            android:text="@string/item_chat" />
+            android:text="@string/item_chat"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_chat"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
+            android:id="@+id/iv_good"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:paddingStart="2dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/heart"/>
+            android:src="@drawable/heart"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/textItem_chat"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textItem_good"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingStart="5dp"
-            android:text="@string/item_good" />
+            android:text="@string/item_good"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_good"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

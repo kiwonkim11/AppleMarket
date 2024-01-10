@@ -17,8 +17,9 @@ class DetailActivity : AppCompatActivity() {
 
         binding.ivItem.setImageResource(dataList!!.aIcon)
         binding.txtdetailName.text = dataList.aName
+        binding.txtdetailNickname.text = dataList.aNickname
         binding.txtdetailAddress.text = dataList.aAddress
-
+        binding.txtdetailPost.text = dataList.aPost
 
         binding.ivBack.setOnClickListener {
             finish()
