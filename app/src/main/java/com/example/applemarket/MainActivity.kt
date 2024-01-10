@@ -3,6 +3,7 @@ package com.example.applemarket
 import android.annotation.SuppressLint
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.DialogInterface
 import android.content.Intent
 import android.media.AudioAttributes
@@ -11,14 +12,18 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.applemarket.databinding.ActivityMainBinding
 
+@Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -45,6 +50,7 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
         binding.recyclerView.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
+        binding.recyclerView.addOnScrollListener(createScrollListener())
 
         adapter.itemClick = object : MyAdapter.ItemClick {
             override fun onClick(view: View, position: Int) {
@@ -57,15 +63,17 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        binding.notificationBell.setOnClickListener {
-            notification()
+        binding.notificationBell.setOnClickListener { notification() }
+
+        binding.fabUp.setOnClickListener {
+            binding.recyclerView.smoothScrollToPosition(0)
         }
     }
 
-    fun notification() {
+    private fun notification() {
         val manager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
 
-        var builder: NotificationCompat.Builder
+        val builder: NotificationCompat.Builder
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channelID = "one-channel"
             val channelName = "My Channel One"
@@ -86,15 +94,23 @@ class MainActivity : AppCompatActivity() {
             builder = NotificationCompat.Builder(this)
         }
 
+        val intent = Intent(this, MainActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        val pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
+
         builder.run {
+            setSmallIcon(R.mipmap.ic_launcher_round)
             setWhen(System.currentTimeMillis())
             setContentTitle("키워드 알림")
             setContentText("설정한 키워드에 대한 알림이 도착했습니다!!")
+            setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            addAction(R.mipmap.ic_launcher, "Action", pendingIntent)
         }
 
         manager.notify(11, builder.build())
     }
 
+    @Deprecated("Deprecated in Java")
     @SuppressLint("MissingSuperCall")
     override fun onBackPressed() {
         val builder = AlertDialog.Builder(this)
@@ -108,5 +124,22 @@ class MainActivity : AppCompatActivity() {
         builder.setPositiveButton("확인", listener)
         builder.setNegativeButton("취소", null)
         builder.show()
+    }
+
+    private fun createScrollListener(): RecyclerView.OnScrollListener {
+        return object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                with(binding.fabUp) {
+                    if (!binding.recyclerView.canScrollVertically(-1)) {
+                        animate().alpha(0f).duration = 200
+                        visibility = GONE
+                    } else {
+                        visibility = VISIBLE
+                        animate().alpha(1f).duration = 200
+                    }
+                }
+            }
+        }
     }
 }
