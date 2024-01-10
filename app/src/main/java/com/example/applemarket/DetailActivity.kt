@@ -1,5 +1,6 @@
 package com.example.applemarket
 
+import android.graphics.Paint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.applemarket.databinding.ActivityDetailBinding
@@ -20,6 +21,8 @@ class DetailActivity : AppCompatActivity() {
         binding.txtdetailNickname.text = dataList.aNickname
         binding.txtdetailAddress.text = dataList.aAddress
         binding.txtdetailPost.text = dataList.aPost
+
+        binding.txtManner.paintFlags = Paint.UNDERLINE_TEXT_FLAG
 
         binding.ivBack.setOnClickListener {
             finish()

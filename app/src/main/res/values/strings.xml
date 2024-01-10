@@ -101,4 +101,5 @@
     <string name="item_post">Post</string>
     <string name="txt_mannertemper">매너온도</string>
     <string name="txt_usechat">채팅하기</string>
+    <string name="txt_temp">39.3℃</string>
 </resources>
