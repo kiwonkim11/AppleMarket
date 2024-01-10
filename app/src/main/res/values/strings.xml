@@ -91,4 +91,15 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="action_settings">Settings</string>
+    <string name="item_chat">채팅</string>
+    <string name="item_good">좋아요</string>
+    <string name="item_name">Name</string>
+    <string name="item_address">Address</string>
+    <string name="item_price">Price</string>
+    <string name="main_myaddress">내배캠동</string>
+    <string name="item_nickname">NickName</string>
+    <string name="item_post">Post</string>
+    <string name="txt_mannertemper">매너온도</string>
+    <string name="txt_usechat">채팅하기</string>
+    <string name="txt_temp">39.3℃</string>
 </resources>
