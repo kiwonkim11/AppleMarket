@@ -13,7 +13,12 @@ class MyAdapter (private val mItems: MutableList<MyItem>) : RecyclerView.Adapter
         fun onClick(view: View, position: Int)
     }
 
+    interface ItemLongClick {
+        fun onLongClick(view: View, position: Int)
+    }
+
     var itemClick : ItemClick? = null
+    var itemLongClick : ItemLongClick? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val binding = ItemRecyclerviewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -24,6 +29,12 @@ class MyAdapter (private val mItems: MutableList<MyItem>) : RecyclerView.Adapter
         holder.itemView.setOnClickListener{
             itemClick?.onClick(it, position)
         }
+
+        holder.itemView.setOnLongClickListener{
+            itemLongClick?.onLongClick(it, position)
+            return@setOnLongClickListener true
+        }
+
         val dec = DecimalFormat("#,###")
 
         holder.iconImageView.setImageResource(mItems[position].aIcon)
