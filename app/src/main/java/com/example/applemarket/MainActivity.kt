@@ -63,6 +63,24 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        adapter.itemLongClick = object : MyAdapter.ItemLongClick {
+            override fun onLongClick(view: View, position: Int) {
+                val delete = AlertDialog.Builder(this@MainActivity)
+                delete.setIcon(R.drawable.chat)
+                delete.setTitle("상품 삭제")
+                delete.setMessage("상품을 정말로 삭제하시겠습니까?")
+                delete.setPositiveButton("확인"){dialog, _ ->
+                    dataList.removeAt(position)
+                    adapter.notifyItemRemoved(position)
+                }
+                delete.setNegativeButton("취소"){dialog, _ ->
+                    dialog.dismiss()
+                }
+
+                delete.show()
+            }
+        }
+
         binding.notificationBell.setOnClickListener { notification() }
 
         binding.fabUp.setOnClickListener {
