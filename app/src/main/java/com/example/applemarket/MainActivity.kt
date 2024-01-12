@@ -91,20 +91,20 @@ class MainActivity : AppCompatActivity() {
 
         activityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             if (it.resultCode == RESULT_OK) {
-                val goodIndex = it.data?.getIntExtra("goodIndex", 0) as Int
+                val itemIndex = it.data?.getIntExtra("itemIndex", 0) as Int
                 val isGood = it.data?.getBooleanExtra("isGood", false) as Boolean
 
                 if (isGood) {
-                    dataList[goodIndex].isGood = true
-                    dataList[goodIndex].aGood += 1
+                    dataList[itemIndex].isGood = true
+                    dataList[itemIndex].aGood += 1
                 } else {
-                    if (dataList[goodIndex].isGood) {
-                        dataList[goodIndex].isGood = false
-                        dataList[goodIndex].aGood -= 1
+                    if (dataList[itemIndex].isGood) {
+                        dataList[itemIndex].isGood = false
+                        dataList[itemIndex].aGood -= 1
                     }
                 }
 
-                adapter.notifyItemChanged(goodIndex)
+                adapter.notifyItemChanged(itemIndex)
             }
         }
     }

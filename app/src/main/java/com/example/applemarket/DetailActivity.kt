@@ -1,5 +1,6 @@
 package com.example.applemarket
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Paint
 import android.os.Bundle
@@ -50,14 +51,22 @@ class DetailActivity : AppCompatActivity() {
         }
 
         binding.ivBack.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java).apply{
-                putExtra("goodIndex", itemPosition)
-                putExtra("isGood", isGood)
-            }
+            exit()
+        }
+    }
 
-            setResult(RESULT_OK, intent)
-            if(!isFinishing) finish()
+    fun exit() {
+        val intent = Intent(this, MainActivity::class.java).apply{
+            putExtra("itemIndex", itemPosition)
+            putExtra("isGood", isGood)
         }
 
+        setResult(RESULT_OK, intent)
+        if(!isFinishing) finish()
+    }
+
+    @SuppressLint("MissingSuperCall")
+    override fun onBackPressed() {
+        exit()
     }
 }
