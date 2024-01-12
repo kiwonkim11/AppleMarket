@@ -147,6 +147,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <ImageView
+            android:id="@+id/iv_isgood"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="center"

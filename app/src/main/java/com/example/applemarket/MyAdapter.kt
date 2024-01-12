@@ -43,6 +43,13 @@ class MyAdapter (private val mItems: MutableList<MyItem>) : RecyclerView.Adapter
         holder.price.text = "${dec.format(mItems[position].aPrice)}원"
         holder.chat.text = "${mItems[position].aChat}"
         holder.good.text = "${mItems[position].aGood}"
+
+        if(mItems[position].isGood){
+            holder.ivGood.setImageResource(R.drawable.red_heart)
+        } else {
+            holder.ivGood.setImageResource(R.drawable.heart)
+        }
+
     }
 
     override fun getItemId(position: Int): Long {
@@ -60,5 +67,6 @@ class MyAdapter (private val mItems: MutableList<MyItem>) : RecyclerView.Adapter
         val price = binding.textItemPrice
         val chat = binding.textItemChat
         val good = binding.textItemGood
+        val ivGood = binding.ivGood
     }
 }
